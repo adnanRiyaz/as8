@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="one">
+                <h1 id="name"></h1>
+            </div>
+            <div class="two">
+                <h3>Height : <span id="height"></span></h3>
+                <h3>Mass : <span id="mass"></span></h3>
+                <h3>Haircolor : <span id="haircolor"></span></h3>
+                <h3>Skincolor : <span id="skincolor"></span></h3>
+                <h3>Eyecolor : <span id="eyecolor"></span></h3>
+                <h3>Birthyear : <span id="birthyear"></span></h3>
+                <h3>Gender : <span id="gender"></span></h3>
+            </div>
+        </div>
+        <button id="btn">New Character</button>
+    </div>
+</body>
+<script>
+    const nam = document.getElementById("name");
+    const height = document.getElementById("height");
+    const mass = document.getElementById("mass");
+    const hcolor = document.getElementById("haircolor");
+    const scolor = document.getElementById("skincolor");
+    const ecolor = document.getElementById("eyecolor");
+    const byear = document.getElementById("birthyear");
+    const gender = document.getElementById("gender");
+    const btn = document.getElementById("btn");
+    btn.addEventListener("click", async () => {
+        const num = Math.floor(Math.random() * 20) + 1;
+        // console.log('clicked')
+        const res = await axios.get(`https://swapi.dev/api/people/${num}`);
+        const details = res.data;
+        nam.innerText = details.name;
+        height.innerText = details.height;
+        mass.innerText = details.mass;
+        hcolor.innerText = details.hair_color;
+        scolor.innerText = details.skin_color;
+        ecolor.innerText = details.eye_color;
+        byear.innerText = details.birth_year;
+        gender.innerText = details.gender;
+
+    })
+</script>
+
+</html>
